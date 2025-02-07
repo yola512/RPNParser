@@ -12,6 +12,10 @@ public class Main {
     // method that converts infix expression to ONP (by shunting-yard algorithm)
     public static String infixToRPN(String expression)
     {
+        if (!isValidExpression(expression)) {
+            throw new IllegalArgumentException("ERROR: Expression contains invalid characters!");
+        }
+
         Stack<Character> operators = new Stack<>(); // stack of operators
         StringBuilder result = new StringBuilder(); // result that will be written in ONP
         // priority of operators: values 1 and 2 show their importance in operations
@@ -47,11 +51,11 @@ public class Main {
                     }
                     operators.push(symbol); // adding new operator to the stack
                 }
-                if (symbol == '(')
+                else if (symbol == '(')
                 {
                     operators.push(symbol); // '(' symbol added to the stack
                 }
-                if (symbol == ')') {
+                else if (symbol == ')') {
                     // if its a ')' symbol operators are getting removed from the stack
                     // (until a '(' symbol is found)
                     while (!operators.isEmpty() && operators.peek() != '(')
@@ -144,6 +148,11 @@ public class Main {
             }
             default -> throw new IllegalArgumentException("ERROR: Unknown operator: " + operator);
         };
+    }
+
+    // method to check if the expression contains valid characters
+    public static boolean isValidExpression(String expression) {
+        return expression.matches("[\\d+\\-*/()\\s]+");
     }
 
     public static void main(String[] args)
