@@ -1,3 +1,11 @@
+/*
+Dla zadanego zestawu operacji: dodawanie, odejmowanie, mnożenie,
+dzielenie oraz nawiasy – korzystając z Odwrotnej Notacji Polskiej napisz
+funkcję parser. Funkcja taka na wejściu a przyjmować String zawierający
+tylko cyfry, operatory i nawiasy. Na wyjściu ma zwracać liczbę
+reprezentującą rozwiązanie.
+ */
+
 import java.util.*;
 
 public class Main {
@@ -62,13 +70,8 @@ public class Main {
         }
 
         while (!operators.isEmpty())
-        { // all remaining operators are added to the result
-            result.append(operators.pop()).append(' ');
-        }
 
-        return result.toString().trim(); // result with unnecessary space at the end removed
-    }
-
+          
      // parser(String expression) - a method that calculates the result of an expression in RPN
 
     public static int parser(String expression)
@@ -168,5 +171,3 @@ public class Main {
         scanner.close();
     }
 
-
-}
